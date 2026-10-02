@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    VWO SMARTCODE:
+    Sau khi tạo website trong VWO, dán NGUYÊN KHỐI SmartCode do VWO cấp vào đây.
+    Không dán code ví dụ và không chia sẻ SmartCode công khai.
+  -->
+
+  <title>Danang Escape | 다낭 여행 항공권 예매</title>
+
+  <style>
+    :root {
+      --navy: #0c294b;
+      --blue: #1877d1;
+      --sky: #eaf6ff;
+      --orange: #ff6b35;
+      --yellow: #ffd166;
+      --ink: #162132;
+      --muted: #637083;
+      --line: #e5ebf3;
+      --white: #ffffff;
+      --green: #0c7a5d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #f5f8fc;
+      font-family: Arial, "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .topbar {
+      padding: 15px 0;
+      color: white;
+      background: rgba(12, 41, 75, 0.98);
+    }
+
+    .topbar-inner,
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: #7fd5ff;
+    }
+
+    .prototype-label {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      font-size: 12px;
+    }
+
+    .hero {
+      min-height: 370px;
+      display: flex;
+      align-items: end;
+      position: relative;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(4, 25, 50, 0.82), rgba(4, 25, 50, 0.22)),
+        url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .hero-content {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0;
+    }
+
+    .eyebrow {
+      margin: 0 0 9px;
+      color: #c3e9ff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(33px, 5vw, 56px);
+      line-height: 1.15;
+      letter-spacing: -1.6px;
+    }
+
+    .hero-text {
+      max-width: 610px;
+      margin: 15px 0 0;
+      color: #edf7ff;
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    .message-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: -34px auto 24px;
+      padding: 20px 22px;
+      position: relative;
+      border: 1px solid #bee0ff;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 13px 30px rgba(12, 41, 75, 0.14);
+    }
+
+    .message-icon {
+      display: grid;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border-radius: 12px;
+      color: white;
+      background: var(--blue);
+      font-size: 21px;
+    }
+
+    #test-message {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    .message-note {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .search-card {
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: white;
+      box-shadow: 0 8px 25px rgba(12, 41, 75, 0.08);
+    }
+
+    .trip-types {
+      display: flex;
+      gap: 22px;
+      margin-bottom: 17px;
+      font-weight: 800;
+    }
+
+    .trip-types label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      accent-color: var(--blue);
+    }
+
+    .route-fields {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .field {
+      min-height: 69px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fbfdff;
+    }
+
+    .field small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .field strong {
+      font-size: 16px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 31px 0 14px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -0.6px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: right;
+    }
+
+    #flight-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .flight-card {
+      display: grid;
+      grid-template-columns: 1.05fr 1.5fr 1fr 162px;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: white;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .flight-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(12, 41, 75, 0.09);
+    }
+
+    .airline {
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .airline small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .route {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .airport {
+      text-align: center;
+    }
+
+    .airport strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .airport span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .flight-line {
+      position: relative;
+      min-width: 60px;
+      height: 1px;
+      background: #b8c9db;
+    }
+
+    .flight-line::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 0 5px;
+      transform: translate(-50%, -55%);
+      color: var(--blue);
+      background: white;
+      content: "✈";
+    }
+
+    .flight-date {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .flight-date small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .price-area {
+      text-align: right;
+    }
+
+    .price-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .price {
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .select-flight {
+      width: 100%;
+      margin-top: 10px;
+      padding: 11px;
+      border: 0;
+      border-radius: 9px;
+      color: white;
+      background: var(--orange);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .select-flight:hover {
+      background: #e45827;
+    }
+
+    .booking-panel {
+      position: sticky;
+      bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 17px;
+      margin: 28px 0 16px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      color: white;
+      background: var(--navy);
+      box-shadow: 0 13px 28px rgba(12, 41, 75, 0.25);
+    }
+
+    .selected-label {
+      margin: 0 0 5px;
+      color: #bddaff;
+      font-size: 12px;
+    }
+
+    #selected-flight {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    #booking-button {
+      min-width: 192px;
+      padding: 14px 19px;
+      border: 0;
+      border-radius: 10px;
+      color: #392800;
+      background: var(--yellow);
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    #booking-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.58;
+    }
+
+    #booking-button:hover:not(:disabled) {
+      background: #ffc744;
+    }
+
+    #result-message {
+      min-height: 24px;
+      margin: 0 0 34px;
+      color: var(--green);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .gallery-heading {
+      margin: 35px 0 13px;
+      font-size: 24px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 190px;
+      display: block;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .footer-note {
+      padding: 27px 0 33px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 880px) {
+      .route-fields {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .flight-card {
+        grid-template-columns: 1fr 1.35fr 1fr;
+      }
+
+      .price-area {
+        display: flex;
+        grid-column: 1 / -1;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        text-align: left;
+      }
+
+      .select-flight {
+        width: auto;
+        min-width: 120px;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .prototype-label {
+        display: none;
+      }
+
+      .hero {
+        min-height: 330px;
+      }
+
+      .hero-content {
+        padding: 45px 0;
+      }
+
+      .message-card {
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .route-fields,
+      .flight-card,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .route {
+        justify-content: flex-start;
+      }
+
+      .flight-date {
+        text-align: left;
+      }
+
+      .price-area {
+        grid-column: auto;
+      }
+
+      .booking-panel {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      #booking-button {
+        width: 100%;
+      }
+
+      .gallery img {
+        height: 210px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">Danang <span>Escape</span></div>
+      <div class="prototype-label">수업용 A/B 테스트 프로토타입</div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">2027 다낭 여행 항공권 특가</p>
+      <h1>다낭의 바다와 햇살을<br>가장 먼저 만나보세요.</h1>
+      <p class="hero-text">
+        인천(ICN)에서 다낭(DAD)까지, 여행 일정에 맞는 항공편을 비교하고 선택하세요.
+      </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="message-card">
+      <div class="message-icon">✈</div>
+
+      <div>
+        <!-- A/B TEST ELEMENT: Version B에서는 이 문장만 바꾸세요. -->
+        <p id="test-message">
+          지금 다낭 여행 항공권을 예매하면 원하는 시간대의 좌석과 특별 할인 혜택을 받을 수 있습니다.
+        </p>
+        <p class="message-note">
+          항공편을 선택한 후 ‘항공권 예매하기’를 눌러 주세요.
+        </p>
+      </div>
+    </section>
+
+    <section class="search-card">
+      <div class="trip-types">
+        <label>
+          <input type="radio" name="trip" value="round" checked>
+          왕복
+        </label>
+
+        <label>
+          <input type="radio" name="trip" value="oneway">
+          편도
+        </label>
+      </div>
+
+      <div class="route-fields">
+        <div class="field">
+          <small>출발지</small>
+          <strong>인천 (ICN)</strong>
+        </div>
+
+        <div class="field">
+          <small>도착지</small>
+          <strong>다낭 (DAD)</strong>
+        </div>
+
+        <div class="field">
+          <small>출발일</small>
+          <strong>2027.05.03</strong>
+        </div>
+
+        <div class="field">
+          <small id="return-label">귀국일</small>
+          <strong id="return-date">2027.05.08</strong>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <h2>추천 항공편</h2>
+        <p id="flight-count">왕복 항공권 · 3개 항공편</p>
+      </div>
+
+      <div id="flight-list"></div>
+    </section>
+
+    <section class="booking-panel">
+      <div>
+        <p class="selected-label">선택한 항공편</p>
+        <p id="selected-flight">아직 선택한 항공편이 없습니다.</p>
+      </div>
+
+      <!-- VWO GOAL/METRIC SELECTOR: #booking-button -->
+      <button id="booking-button" type="button" disabled>
+        항공권 예매하기
+      </button>
+    </section>
+
+    <p id="result-message" aria-live="polite"></p>
+
+    <section>
+      <h2 class="gallery-heading">다낭에서 즐길 수 있는 여행</h2>
+
+      <div class="gallery">
+        <img
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+          alt="푸른 바다와 해변"
+        >
+        <img
+          src="https://images.unsplash.com/photo-1484291470158-b8f8d608850d?auto=format&fit=crop&w=900&q=80"
+          alt="해변에서의 휴식"
+        >
+        <img
+          src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=900&q=80"
+          alt="베트남 여행 풍경"
+        >
+      </div>
+    </section>
+
+    <p class="footer-note">
+      본 페이지는 수업용 A/B 테스트 프로토타입입니다. 표시된 항공편, 가격, 이미지 및 일정은 실제 판매 정보가 아닌 학습용 시나리오입니다.
+      이미지 출처: Unsplash.
+    </p>
+  </main>
+
+  <script>
+    const flights = {
+      round: [
+        { airline: "VietJet Air", code: "VJ", price: "468,000 KRW" },
+        { airline: "Jeju Air", code: "7C", price: "525,000 KRW" },
+        { airline: "Vietnam Airlines", code: "VN", price: "742,000 KRW" }
+      ],
+      oneway: [
+        { airline: "VietJet Air", code: "VJ", price: "248,000 KRW" },
+        { airline: "Jeju Air", code: "7C", price: "286,000 KRW" },
+        { airline: "Vietnam Airlines", code: "VN", price: "398,000 KRW" }
+      ]
+    };
+
+    let tripType = "round";
+    let selectedFlight = null;
+
+    function renderFlights() {
+      const currentFlights = flights[tripType];
+
+      const dateText = tripType === "round"
+        ? "2027.05.03 → 2027.05.08"
+        : "2027.05.03";
+
+      const tripLabel = tripType === "round"
+        ? "왕복 총액"
+        : "편도 총액";
+
+      document.getElementById("flight-count").textContent =
+        tripType === "round"
+          ? "왕복 항공권 · 3개 항공편"
+          : "편도 항공권 · 3개 항공편";
+
+      document.getElementById("return-label").textContent =
+        tripType === "round" ? "귀국일" : "여정";
+
+      document.getElementById("return-date").textContent =
+        tripType === "round" ? "2027.05.08" : "편도";
+
+      document.getElementById("flight-list").innerHTML = currentFlights
+        .map((flight, index) => `
+          <article class="flight-card">
+            <div class="airline">
+              ${flight.airline}
+              <small>${flight.code} · 일반석</small>
+            </div>
+
+            <div class="route">
+              <div class="airport">
+                <strong>ICN</strong>
+                <span>인천</span>
+              </div>
+
+              <div class="flight-line"></div>
+
+              <div class="airport">
+                <strong>DAD</strong>
+                <span>다낭</span>
+              </div>
+            </div>
+
+            <div class="flight-date">
+              ${dateText}
+              <small>여행 일정에 맞는 항공편</small>
+            </div>
+
+            <div class="price-area">
+              <div>
+                <span class="price-label">${tripLabel}</span>
+                <span class="price">${flight.price}</span>
+              </div>
+
+              <button class="select-flight" type="button" data-index="${index}">
+                선택하기
+              </button>
+            </div>
+          </article>
+        `)
+        .join("");
+
+      document.querySelectorAll(".select-flight").forEach(button => {
+        button.addEventListener("click", function () {
+          selectFlight(Number(this.dataset.index));
+        });
+      });
+    }
+
+    function selectFlight(index) {
+      selectedFlight = flights[tripType][index];
+
+      document.getElementById("selected-flight").textContent =
+        `${selectedFlight.airline} · 인천(ICN) → 다낭(DAD) · ${selectedFlight.price}`;
+
+      document.getElementById("booking-button").disabled = false;
+    }
+
+    document.querySelectorAll('input[name="trip"]').forEach(radio => {
+      radio.addEventListener("change", function () {
+        tripType = this.value;
+        selectedFlight = null;
+
+        document.getElementById("selected-flight").textContent =
+          "아직 선택한 항공편이 없습니다.";
+
+        document.getElementById("booking-button").disabled = true;
+        document.getElementById("result-message").textContent = "";
+
+        renderFlights();
+      });
+    });
+
+    document.getElementById("booking-button").addEventListener("click", function () {
+      if (!selectedFlight) return;
+
+      document.getElementById("result-message").textContent =
+        `${selectedFlight.airline} 항공편 예매 클릭이 기록되었습니다.`;
+    });
+
+    renderFlights();
+  </script>
+</body>
+</html>
